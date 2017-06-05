@@ -1,9 +1,10 @@
 #
 # Conditional build:
-%bcond_without	doc			# don't build ri/rdoc
+%bcond_without	doc	# ri/rdoc documentation
 
 %define pkgname docile
-Summary:	Docile turns any Ruby object into a DSL.
+Summary:	Docile turns any Ruby object into a DSL
+Summary(pl.UTF-8):	Docile - przekształcanie obiektów języka Ruby do DSL-a
 Name:		ruby-%{pkgname}
 Version:	1.1.5
 Release:	1
@@ -14,36 +15,42 @@ Group:		Development/Languages
 URL:		https://rubygems.org/gems/simplecov
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
+BuildRequires:	ruby >= 1:1.8.7
+Requires:	ruby >= 1:1.8.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Docile turns any Ruby object into a DSL.
-Especially useful with the Builder pattern.
+Docile turns any Ruby object into a DSL. Especially useful with the
+Builder pattern.
+
+%description -l pl.UTF-8
+Docile przekształca obiekty języka Ruby do DSL-a. Przydatne
+szczególnie wraz z wzorcem Builder.
 
 %package rdoc
-Summary:	HTML documentation for %{pkgname}
-Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
+Summary:	HTML documentation for Ruby %{pkgname} module
+Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla modułu języka Ruby %{pkgname}
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
 
 %description rdoc
-HTML documentation for %{pkgname}.
+HTML documentation for Ruby %{pkgname} module.
 
 %description rdoc -l pl.UTF-8
-Dokumentacja w formacie HTML dla %{pkgname}.
+Dokumentacja w formacie HTML dla modułu języka Ruby %{pkgname}.
 
 %package ri
-Summary:	ri documentation for %{pkgname}
-Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
+Summary:	ri documentation for Ruby %{pkgname} module
+Summary(pl.UTF-8):	Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}
 Group:		Documentation
 Requires:	ruby
 
 %description ri
-ri documentation for %{pkgname}.
+ri documentation for Ruby %{pkgname} module.
 
 %description ri -l pl.UTF-8
-Dokumentacji w formacie ri dla %{pkgname}.
+Dokumentacja w formacie ri dla modułu języka Ruby %{pkgname}.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
@@ -80,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc HISTORY.md README.md
+%doc HISTORY.md LICENSE README.md
 %{ruby_vendorlibdir}/%{pkgname}.rb
 %{ruby_vendorlibdir}/%{pkgname}
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
